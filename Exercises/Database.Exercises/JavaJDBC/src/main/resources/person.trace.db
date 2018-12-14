@@ -1,0 +1,494 @@
+12-04 13:10:32 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "PERSON" already exists; SQL statement:
+CREATE TABLE `PERSON` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `FIRSTNAME` varchar(255) NOT NULL COMMENT 'Persons first name',
+  `LASTNAME` varchar(255) COMMENT 'Persons last name',
+  `BIRTHDAY` date NOT NULL COMMENT 'Birthday',
+  `NICKNAME` varchar(255) NOT NULL,
+  PRIMARY KEY (`ID`),
+  UNIQUE(`NICKNAME`)
+);
+ [42101-148]
+2018-12-04 13:52:48 jdbc[4]: null
+org.h2.message.DbException: The connection was not closed by the application and is garbage collected [90018-197]
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.message.DbException.get(DbException.java:144)
+	at org.h2.jdbc.JdbcConnection.closeOld(JdbcConnection.java:197)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:137)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:103)
+	at org.h2.Driver.connect(Driver.java:69)
+	at org.h2.server.web.WebServer.getConnection(WebServer.java:733)
+	at org.h2.server.web.WebApp.login(WebApp.java:954)
+	at org.h2.server.web.WebApp.process(WebApp.java:211)
+	at org.h2.server.web.WebApp.processRequest(WebApp.java:170)
+	at org.h2.server.web.WebThread.process(WebThread.java:134)
+	at org.h2.server.web.WebThread.run(WebThread.java:90)
+	at java.base/java.lang.Thread.run(Unknown Source)
+Caused by: org.h2.jdbc.JdbcSQLException: The connection was not closed by the application and is garbage collected [90018-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	... 14 more
+2018-12-04 13:52:48 jdbc[4]: null
+org.h2.message.DbException: The connection was not closed by the application and is garbage collected [90018-197]
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.message.DbException.get(DbException.java:144)
+	at org.h2.jdbc.JdbcConnection.closeOld(JdbcConnection.java:197)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:137)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:103)
+	at org.h2.Driver.connect(Driver.java:69)
+	at org.h2.server.web.WebServer.getConnection(WebServer.java:733)
+	at org.h2.server.web.WebApp.login(WebApp.java:954)
+	at org.h2.server.web.WebApp.process(WebApp.java:211)
+	at org.h2.server.web.WebApp.processRequest(WebApp.java:170)
+	at org.h2.server.web.WebThread.process(WebThread.java:134)
+	at org.h2.server.web.WebThread.run(WebThread.java:90)
+	at java.base/java.lang.Thread.run(Unknown Source)
+Caused by: org.h2.jdbc.JdbcSQLException: The connection was not closed by the application and is garbage collected [90018-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	... 14 more
+12-04 14:35:42 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "PERSO" not found; SQL statement:
+SELECT * FROM PERSO; [42102-148]
+2018-12-04 15:45:20 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Column "SUBSTR" not found; SQL statement:
+UPDATE PERSON SET SUBSTR(BIRTHDAY, 1, 4) = 1992 WHERE ID=  2 [42122-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.table.Table.getColumn(Table.java:682)
+	at org.h2.command.Parser.readTableColumn(Parser.java:771)
+	at org.h2.command.Parser.parseUpdateSetClause(Parser.java:809)
+	at org.h2.command.Parser.parseUpdate(Parser.java:780)
+	at org.h2.command.Parser.parsePrepared(Parser.java:485)
+	at org.h2.command.Parser.parse(Parser.java:335)
+	at org.h2.command.Parser.parse(Parser.java:307)
+	at org.h2.command.Parser.prepareCommand(Parser.java:278)
+	at org.h2.engine.Session.prepareLocal(Session.java:611)
+	at org.h2.engine.Session.prepareCommand(Session.java:549)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1247)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:217)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:1077)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1386)
+	at org.h2.server.web.WebApp.query(WebApp.java:1060)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1022)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1009)
+	at org.h2.server.web.WebThread.process(WebThread.java:165)
+	at org.h2.server.web.WebThread.run(WebThread.java:90)
+	at java.base/java.lang.Thread.run(Unknown Source)
+2018-12-04 15:46:50 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Cannot parse "DATE" constant "(1992, 2000)"; SQL statement:
+UPDATE PERSON SET BIRTHDAY = (1992, SUBSTR(BIRTHDAY, 1, 4))  WHERE ID=  2 [22007-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	at org.h2.message.DbException.get(DbException.java:168)
+	at org.h2.value.ValueDate.parse(ValueDate.java:74)
+	at org.h2.value.Value.convertTo(Value.java:1069)
+	at org.h2.table.Column.convert(Column.java:177)
+	at org.h2.table.Column.convert(Column.java:163)
+	at org.h2.command.dml.Update.update(Update.java:133)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:102)
+	at org.h2.command.Command.executeUpdate(Command.java:261)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:233)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:1077)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1386)
+	at org.h2.server.web.WebApp.query(WebApp.java:1060)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1022)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1009)
+	at org.h2.server.web.WebThread.process(WebThread.java:165)
+	at org.h2.server.web.WebThread.run(WebThread.java:90)
+	at java.base/java.lang.Thread.run(Unknown Source)
+Caused by: java.lang.IllegalArgumentException: (1992, 2000)
+	at org.h2.util.DateTimeUtils.parseDateValue(DateTimeUtils.java:345)
+	at org.h2.value.ValueDate.parse(ValueDate.java:72)
+	... 15 more
+2018-12-04 15:47:36 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Cannot parse "DATE" constant "(1992, 2013)"; SQL statement:
+UPDATE PERSON SET BIRTHDAY = (1992, SUBSTR(BIRTHDAY, 1, 4))  WHERE ID=  1 [22007-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	at org.h2.message.DbException.get(DbException.java:168)
+	at org.h2.value.ValueDate.parse(ValueDate.java:74)
+	at org.h2.value.Value.convertTo(Value.java:1069)
+	at org.h2.table.Column.convert(Column.java:177)
+	at org.h2.table.Column.convert(Column.java:163)
+	at org.h2.command.dml.Update.update(Update.java:133)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:102)
+	at org.h2.command.Command.executeUpdate(Command.java:261)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:233)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:1077)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1386)
+	at org.h2.server.web.WebApp.query(WebApp.java:1060)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1022)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1009)
+	at org.h2.server.web.WebThread.process(WebThread.java:165)
+	at org.h2.server.web.WebThread.run(WebThread.java:90)
+	at java.base/java.lang.Thread.run(Unknown Source)
+Caused by: java.lang.IllegalArgumentException: (1992, 2013)
+	at org.h2.util.DateTimeUtils.parseDateValue(DateTimeUtils.java:345)
+	at org.h2.value.ValueDate.parse(ValueDate.java:72)
+	... 15 more
+2018-12-04 15:47:37 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Cannot parse "DATE" constant "(1992, 2013)"; SQL statement:
+UPDATE PERSON SET BIRTHDAY = (1992, SUBSTR(BIRTHDAY, 1, 4))  WHERE ID=  1 [22007-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	at org.h2.message.DbException.get(DbException.java:168)
+	at org.h2.value.ValueDate.parse(ValueDate.java:74)
+	at org.h2.value.Value.convertTo(Value.java:1069)
+	at org.h2.table.Column.convert(Column.java:177)
+	at org.h2.table.Column.convert(Column.java:163)
+	at org.h2.command.dml.Update.update(Update.java:133)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:102)
+	at org.h2.command.Command.executeUpdate(Command.java:261)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:233)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:1077)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1386)
+	at org.h2.server.web.WebApp.query(WebApp.java:1060)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1022)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1009)
+	at org.h2.server.web.WebThread.process(WebThread.java:165)
+	at org.h2.server.web.WebThread.run(WebThread.java:90)
+	at java.base/java.lang.Thread.run(Unknown Source)
+Caused by: java.lang.IllegalArgumentException: (1992, 2013)
+	at org.h2.util.DateTimeUtils.parseDateValue(DateTimeUtils.java:345)
+	at org.h2.value.ValueDate.parse(ValueDate.java:72)
+	... 15 more
+2018-12-04 15:47:38 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Cannot parse "DATE" constant "(1992, 2013)"; SQL statement:
+UPDATE PERSON SET BIRTHDAY = (1992, SUBSTR(BIRTHDAY, 1, 4))  WHERE ID=  1 [22007-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	at org.h2.message.DbException.get(DbException.java:168)
+	at org.h2.value.ValueDate.parse(ValueDate.java:74)
+	at org.h2.value.Value.convertTo(Value.java:1069)
+	at org.h2.table.Column.convert(Column.java:177)
+	at org.h2.table.Column.convert(Column.java:163)
+	at org.h2.command.dml.Update.update(Update.java:133)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:102)
+	at org.h2.command.Command.executeUpdate(Command.java:261)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:233)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:1077)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1386)
+	at org.h2.server.web.WebApp.query(WebApp.java:1060)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1022)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1009)
+	at org.h2.server.web.WebThread.process(WebThread.java:165)
+	at org.h2.server.web.WebThread.run(WebThread.java:90)
+	at java.base/java.lang.Thread.run(Unknown Source)
+Caused by: java.lang.IllegalArgumentException: (1992, 2013)
+	at org.h2.util.DateTimeUtils.parseDateValue(DateTimeUtils.java:345)
+	at org.h2.value.ValueDate.parse(ValueDate.java:72)
+	... 15 more
+2018-12-04 15:47:38 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Cannot parse "DATE" constant "(1992, 2013)"; SQL statement:
+UPDATE PERSON SET BIRTHDAY = (1992, SUBSTR(BIRTHDAY, 1, 4))  WHERE ID=  1 [22007-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	at org.h2.message.DbException.get(DbException.java:168)
+	at org.h2.value.ValueDate.parse(ValueDate.java:74)
+	at org.h2.value.Value.convertTo(Value.java:1069)
+	at org.h2.table.Column.convert(Column.java:177)
+	at org.h2.table.Column.convert(Column.java:163)
+	at org.h2.command.dml.Update.update(Update.java:133)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:102)
+	at org.h2.command.Command.executeUpdate(Command.java:261)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:233)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:1077)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1386)
+	at org.h2.server.web.WebApp.query(WebApp.java:1060)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1022)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1009)
+	at org.h2.server.web.WebThread.process(WebThread.java:165)
+	at org.h2.server.web.WebThread.run(WebThread.java:90)
+	at java.base/java.lang.Thread.run(Unknown Source)
+Caused by: java.lang.IllegalArgumentException: (1992, 2013)
+	at org.h2.util.DateTimeUtils.parseDateValue(DateTimeUtils.java:345)
+	at org.h2.value.ValueDate.parse(ValueDate.java:72)
+	... 15 more
+2018-12-04 15:49:56 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "UPDATE PERSON SET BIRTHDAY = SUBSTR(BIRTHDAY 1[*],4) || 1992  WHERE ID=  1"; expected "., (, [, ::, *, /, %, +, -, ||, ~, !~, NOT, LIKE, ILIKE, REGEXP, IS, IN, BETWEEN, AND, OR, ,, )"; SQL statement:
+UPDATE PERSON SET BIRTHDAY = SUBSTR(BIRTHDAY 1,4) || 1992  WHERE ID=  1 [42001-197]
+2018-12-04 15:50:14 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "UPDATE PERSON SET BIRTHDAY = SUBSTR(BIRTHDAY 1[*],4) || '1992'  WHERE ID=  1"; expected "., (, [, ::, *, /, %, +, -, ||, ~, !~, NOT, LIKE, ILIKE, REGEXP, IS, IN, BETWEEN, AND, OR, ,, )"; SQL statement:
+UPDATE PERSON SET BIRTHDAY = SUBSTR(BIRTHDAY 1,4) || '1992'  WHERE ID=  1 [42001-197]
+2018-12-04 15:52:23 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Cannot parse "DATE" constant "2013"; SQL statement:
+UPDATE PERSON SET BIRTHDAY = replace(substr(BIRTHDAY,1,4),1992)  WHERE ID=  1 [22007-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	at org.h2.message.DbException.get(DbException.java:168)
+	at org.h2.value.ValueDate.parse(ValueDate.java:74)
+	at org.h2.value.Value.convertTo(Value.java:1069)
+	at org.h2.table.Column.convert(Column.java:177)
+	at org.h2.table.Column.convert(Column.java:163)
+	at org.h2.command.dml.Update.update(Update.java:133)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:102)
+	at org.h2.command.Command.executeUpdate(Command.java:261)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:233)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:1077)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1386)
+	at org.h2.server.web.WebApp.query(WebApp.java:1060)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1022)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1009)
+	at org.h2.server.web.WebThread.process(WebThread.java:165)
+	at org.h2.server.web.WebThread.run(WebThread.java:90)
+	at java.base/java.lang.Thread.run(Unknown Source)
+Caused by: java.lang.IllegalArgumentException: 2013
+	at org.h2.util.DateTimeUtils.parseDateValue(DateTimeUtils.java:345)
+	at org.h2.value.ValueDate.parse(ValueDate.java:72)
+	... 15 more
+2018-12-04 15:52:40 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Cannot parse "DATE" constant "2013"; SQL statement:
+UPDATE PERSON SET BIRTHDAY = replace(substr(BIRTHDAY,1,4),'1992')  WHERE ID=  1 [22007-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	at org.h2.message.DbException.get(DbException.java:168)
+	at org.h2.value.ValueDate.parse(ValueDate.java:74)
+	at org.h2.value.Value.convertTo(Value.java:1069)
+	at org.h2.table.Column.convert(Column.java:177)
+	at org.h2.table.Column.convert(Column.java:163)
+	at org.h2.command.dml.Update.update(Update.java:133)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:102)
+	at org.h2.command.Command.executeUpdate(Command.java:261)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:233)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:1077)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1386)
+	at org.h2.server.web.WebApp.query(WebApp.java:1060)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1022)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1009)
+	at org.h2.server.web.WebThread.process(WebThread.java:165)
+	at org.h2.server.web.WebThread.run(WebThread.java:90)
+	at java.base/java.lang.Thread.run(Unknown Source)
+Caused by: java.lang.IllegalArgumentException: 2013
+	at org.h2.util.DateTimeUtils.parseDateValue(DateTimeUtils.java:345)
+	at org.h2.value.ValueDate.parse(ValueDate.java:72)
+	... 15 more
+2018-12-04 15:53:28 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "UPDATE PERSON SET BIRTHDAY = REPLACE(SUBSTR(BIRTHDAY,1,4) 1992[*])  WHERE ID=  1 "; expected "[, ::, *, /, %, +, -, ||, ~, !~, NOT, LIKE, ILIKE, REGEXP, IS, IN, BETWEEN, AND, OR, ,, )"; SQL statement:
+UPDATE PERSON SET BIRTHDAY = replace(substr(BIRTHDAY,1,4) 1992)  WHERE ID=  1 [42001-197]
+2018-12-04 15:53:33 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Cannot parse "DATE" constant "2013"; SQL statement:
+UPDATE PERSON SET BIRTHDAY = replace(substr(BIRTHDAY,1,4) ,1992)  WHERE ID=  1 [22007-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	at org.h2.message.DbException.get(DbException.java:168)
+	at org.h2.value.ValueDate.parse(ValueDate.java:74)
+	at org.h2.value.Value.convertTo(Value.java:1069)
+	at org.h2.table.Column.convert(Column.java:177)
+	at org.h2.table.Column.convert(Column.java:163)
+	at org.h2.command.dml.Update.update(Update.java:133)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:102)
+	at org.h2.command.Command.executeUpdate(Command.java:261)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:233)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:1077)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1386)
+	at org.h2.server.web.WebApp.query(WebApp.java:1060)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1022)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1009)
+	at org.h2.server.web.WebThread.process(WebThread.java:165)
+	at org.h2.server.web.WebThread.run(WebThread.java:90)
+	at java.base/java.lang.Thread.run(Unknown Source)
+Caused by: java.lang.IllegalArgumentException: 2013
+	at org.h2.util.DateTimeUtils.parseDateValue(DateTimeUtils.java:345)
+	at org.h2.value.ValueDate.parse(ValueDate.java:72)
+	... 15 more
+2018-12-04 15:55:12 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Invalid parameter count for "REPLACE", expected count: "2..3"; SQL statement:
+UPDATE PERSON SET BIRTHDAY = substr(BIRTHDAY,1,4) AND REPLACE(1992)  WHERE ID=  1 [7001-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.expression.Function.checkParameterCount(Function.java:2089)
+	at org.h2.expression.Function.doneWithParameters(Function.java:2103)
+	at org.h2.command.Parser.readFunction(Parser.java:2912)
+	at org.h2.command.Parser.readTerm(Parser.java:3102)
+	at org.h2.command.Parser.readFactor(Parser.java:2587)
+	at org.h2.command.Parser.readSum(Parser.java:2574)
+	at org.h2.command.Parser.readConcat(Parser.java:2544)
+	at org.h2.command.Parser.readCondition(Parser.java:2370)
+	at org.h2.command.Parser.readAnd(Parser.java:2344)
+	at org.h2.command.Parser.readExpression(Parser.java:2334)
+	at org.h2.command.Parser.parseUpdateSetClause(Parser.java:815)
+	at org.h2.command.Parser.parseUpdate(Parser.java:780)
+	at org.h2.command.Parser.parsePrepared(Parser.java:485)
+	at org.h2.command.Parser.parse(Parser.java:335)
+	at org.h2.command.Parser.parse(Parser.java:307)
+	at org.h2.command.Parser.prepareCommand(Parser.java:278)
+	at org.h2.engine.Session.prepareLocal(Session.java:611)
+	at org.h2.engine.Session.prepareCommand(Session.java:549)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1247)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:217)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:1077)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1386)
+	at org.h2.server.web.WebApp.query(WebApp.java:1060)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1022)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1009)
+	at org.h2.server.web.WebThread.process(WebThread.java:165)
+	at org.h2.server.web.WebThread.run(WebThread.java:90)
+	at java.base/java.lang.Thread.run(Unknown Source)
+2018-12-04 15:55:20 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "UPDATE PERSON SET BIRTHDAY = SUBSTR(BIRTHDAY,1,4)[*] & REPLACE(1992)  WHERE ID=  1 "; SQL statement:
+UPDATE PERSON SET BIRTHDAY = substr(BIRTHDAY,1,4) & REPLACE(1992)  WHERE ID=  1 [42000-197]
+2018-12-04 15:55:26 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Invalid parameter count for "REPLACE", expected count: "2..3"; SQL statement:
+UPDATE PERSON SET BIRTHDAY = substr(BIRTHDAY,1,4) && REPLACE(1992)  WHERE ID=  1 [7001-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.expression.Function.checkParameterCount(Function.java:2089)
+	at org.h2.expression.Function.doneWithParameters(Function.java:2103)
+	at org.h2.command.Parser.readFunction(Parser.java:2912)
+	at org.h2.command.Parser.readTerm(Parser.java:3102)
+	at org.h2.command.Parser.readFactor(Parser.java:2587)
+	at org.h2.command.Parser.readSum(Parser.java:2574)
+	at org.h2.command.Parser.readConcat(Parser.java:2544)
+	at org.h2.command.Parser.readCondition(Parser.java:2499)
+	at org.h2.command.Parser.readAnd(Parser.java:2342)
+	at org.h2.command.Parser.readExpression(Parser.java:2334)
+	at org.h2.command.Parser.parseUpdateSetClause(Parser.java:815)
+	at org.h2.command.Parser.parseUpdate(Parser.java:780)
+	at org.h2.command.Parser.parsePrepared(Parser.java:485)
+	at org.h2.command.Parser.parse(Parser.java:335)
+	at org.h2.command.Parser.parse(Parser.java:307)
+	at org.h2.command.Parser.prepareCommand(Parser.java:278)
+	at org.h2.engine.Session.prepareLocal(Session.java:611)
+	at org.h2.engine.Session.prepareCommand(Session.java:549)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1247)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:217)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:1077)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1386)
+	at org.h2.server.web.WebApp.query(WebApp.java:1060)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1022)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1009)
+	at org.h2.server.web.WebThread.process(WebThread.java:165)
+	at org.h2.server.web.WebThread.run(WebThread.java:90)
+	at java.base/java.lang.Thread.run(Unknown Source)
+2018-12-04 15:56:30 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Cannot parse "DATE" constant "FALSE"; SQL statement:
+UPDATE PERSON SET BIRTHDAY = substr(BIRTHDAY,1,4) = '1992 'WHERE ID=  1 [22007-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	at org.h2.message.DbException.get(DbException.java:168)
+	at org.h2.value.ValueDate.parse(ValueDate.java:74)
+	at org.h2.value.Value.convertTo(Value.java:1069)
+	at org.h2.table.Column.convert(Column.java:177)
+	at org.h2.table.Column.convert(Column.java:163)
+	at org.h2.command.dml.Update.update(Update.java:133)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:102)
+	at org.h2.command.Command.executeUpdate(Command.java:261)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:233)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:1077)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1386)
+	at org.h2.server.web.WebApp.query(WebApp.java:1060)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1022)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1009)
+	at org.h2.server.web.WebThread.process(WebThread.java:165)
+	at org.h2.server.web.WebThread.run(WebThread.java:90)
+	at java.base/java.lang.Thread.run(Unknown Source)
+Caused by: java.lang.IllegalArgumentException: FALSE
+	at org.h2.util.DateTimeUtils.parseDateValue(DateTimeUtils.java:345)
+	at org.h2.value.ValueDate.parse(ValueDate.java:72)
+	... 15 more
+2018-12-04 15:56:48 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Cannot parse "DATE" constant "20131992"; SQL statement:
+UPDATE PERSON SET BIRTHDAY = substr(BIRTHDAY,1,4) || '1992 'WHERE ID=  1 [22007-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	at org.h2.message.DbException.get(DbException.java:168)
+	at org.h2.value.ValueDate.parse(ValueDate.java:74)
+	at org.h2.value.Value.convertTo(Value.java:1069)
+	at org.h2.table.Column.convert(Column.java:177)
+	at org.h2.table.Column.convert(Column.java:163)
+	at org.h2.command.dml.Update.update(Update.java:133)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:102)
+	at org.h2.command.Command.executeUpdate(Command.java:261)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:233)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:1077)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1386)
+	at org.h2.server.web.WebApp.query(WebApp.java:1060)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1022)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1009)
+	at org.h2.server.web.WebThread.process(WebThread.java:165)
+	at org.h2.server.web.WebThread.run(WebThread.java:90)
+	at java.base/java.lang.Thread.run(Unknown Source)
+Caused by: java.lang.IllegalArgumentException: 20131992
+	at org.h2.util.DateTimeUtils.parseDateValue(DateTimeUtils.java:345)
+	at org.h2.value.ValueDate.parse(ValueDate.java:72)
+	... 15 more
+2018-12-04 15:57:06 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Cannot parse "DATE" constant "FALSE"; SQL statement:
+UPDATE PERSON SET BIRTHDAY = substr(BIRTHDAY,1,4) = '1992 ' WHERE ID=  1 [22007-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	at org.h2.message.DbException.get(DbException.java:168)
+	at org.h2.value.ValueDate.parse(ValueDate.java:74)
+	at org.h2.value.Value.convertTo(Value.java:1069)
+	at org.h2.table.Column.convert(Column.java:177)
+	at org.h2.table.Column.convert(Column.java:163)
+	at org.h2.command.dml.Update.update(Update.java:133)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:102)
+	at org.h2.command.Command.executeUpdate(Command.java:261)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:233)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:1077)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1386)
+	at org.h2.server.web.WebApp.query(WebApp.java:1060)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1022)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1009)
+	at org.h2.server.web.WebThread.process(WebThread.java:165)
+	at org.h2.server.web.WebThread.run(WebThread.java:90)
+	at java.base/java.lang.Thread.run(Unknown Source)
+Caused by: java.lang.IllegalArgumentException: FALSE
+	at org.h2.util.DateTimeUtils.parseDateValue(DateTimeUtils.java:345)
+	at org.h2.value.ValueDate.parse(ValueDate.java:72)
+	... 15 more
+12-04 16:20:34 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: The object is already closed [90007-148]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:327)
+	at org.h2.message.DbException.get(DbException.java:167)
+	at org.h2.message.DbException.get(DbException.java:144)
+	at org.h2.message.DbException.get(DbException.java:133)
+	at org.h2.jdbc.JdbcResultSet.checkClosed(JdbcResultSet.java:2927)
+	at org.h2.jdbc.JdbcResultSet.next(JdbcResultSet.java:115)
+	at DB.updatPersonBirthday(DB.java:181)
+	at Main.main(Main.java:23)
+12-04 16:20:34 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "BIRTHDAY" not found; SQL statement:
+UPDATE BIRTHDAY FROM PERSON SET BIRTHDAY = nullnullWHERE ID = 1; [42102-148]
+12-04 16:23:55 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: The object is already closed [90007-148]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:327)
+	at org.h2.message.DbException.get(DbException.java:167)
+	at org.h2.message.DbException.get(DbException.java:144)
+	at org.h2.message.DbException.get(DbException.java:133)
+	at org.h2.jdbc.JdbcResultSet.checkClosed(JdbcResultSet.java:2927)
+	at org.h2.jdbc.JdbcResultSet.next(JdbcResultSet.java:115)
+	at DB.updatPersonBirthday(DB.java:181)
+	at Main.main(Main.java:23)
+12-04 16:23:55 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Column "BIRTHDAY" not found [42122-148]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:327)
+	at org.h2.message.DbException.get(DbException.java:167)
+	at org.h2.message.DbException.get(DbException.java:144)
+	at org.h2.jdbc.JdbcResultSet.getColumnIndex(JdbcResultSet.java:2910)
+	at org.h2.jdbc.JdbcResultSet.get(JdbcResultSet.java:2961)
+	at org.h2.jdbc.JdbcResultSet.getString(JdbcResultSet.java:283)
+	at DB.updatPersonBirthday(DB.java:202)
+	at Main.main(Main.java:23)
+12-04 16:23:55 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "BIRTHDAY" not found; SQL statement:
+UPDATE BIRTHDAY FROM PERSON SET BIRTHDAY = nullnullWHERE ID = 1; [42102-148]
+12-04 16:25:20 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Column "BIRTHDAY" not found [42122-148]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:327)
+	at org.h2.message.DbException.get(DbException.java:167)
+	at org.h2.message.DbException.get(DbException.java:144)
+	at org.h2.jdbc.JdbcResultSet.getColumnIndex(JdbcResultSet.java:2910)
+	at org.h2.jdbc.JdbcResultSet.get(JdbcResultSet.java:2961)
+	at org.h2.jdbc.JdbcResultSet.getString(JdbcResultSet.java:283)
+	at DB.updatPersonBirthday(DB.java:182)
+	at Main.main(Main.java:23)
+12-04 16:25:20 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Column "BIRTHDAY" not found [42122-148]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:327)
+	at org.h2.message.DbException.get(DbException.java:167)
+	at org.h2.message.DbException.get(DbException.java:144)
+	at org.h2.jdbc.JdbcResultSet.getColumnIndex(JdbcResultSet.java:2910)
+	at org.h2.jdbc.JdbcResultSet.get(JdbcResultSet.java:2961)
+	at org.h2.jdbc.JdbcResultSet.getString(JdbcResultSet.java:283)
+	at DB.updatPersonBirthday(DB.java:198)
+	at Main.main(Main.java:23)
+12-04 16:25:20 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "BIRTHDAY" not found; SQL statement:
+UPDATE BIRTHDAY FROM PERSON SET BIRTHDAY = nullnullWHERE ID = 1; [42102-148]
+12-04 16:41:08 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "TABLE" not found; SQL statement:
+DELETE FROM Table WHERE name = ? [42102-148]
